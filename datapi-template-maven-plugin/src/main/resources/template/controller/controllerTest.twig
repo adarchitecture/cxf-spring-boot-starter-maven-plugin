@@ -1,0 +1,69 @@
+package {{ controllerTestField.packagePath }};
+
+import {{ serviceField.packagePath }}.{{ serviceField.className }};
+import {{ modelField.packagePath }}.{{ modelField.className }};
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Matchers.same;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
+
+public class {{ controllerTestField.className }} {
+
+    @Mock
+    private {{ serviceField.className }} {{ serviceField.varName }};
+
+    @InjectMocks
+    private {{ controllerField.className }} classUnderTest;
+
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+    }
+
+    @Test
+    public void testCreate() {
+        {{ modelField.className }} instance = new {{ modelField.className }}();
+        when(this.{{ serviceField.varName }}.create(same(instance))).thenReturn(instance);
+
+        assertThat(instance, sameInstance(this.classUnderTest.create(instance)));
+    }
+
+    @Test
+    public void testRead() {
+        {{ idField.className }} id = {{ idField.exampleValue }};
+        {{ modelField.className }} instance = new {{ modelField.className }}();
+
+        when(this.{{ serviceField.varName }}.read(id)).thenReturn(instance);
+
+        assertThat(instance, sameInstance(this.classUnderTest.read(id)));
+    }
+
+    @Test
+    public void testUpdate() {
+        {{ idField.className }} id = {{ idField.exampleValue }};
+        {{ modelField.className }} instance = new {{ modelField.className }}();
+
+        when(this.{{ serviceField.varName }}.update(same(instance))).thenReturn(instance);
+
+        assertThat(instance, sameInstance(this.classUnderTest.update(id, instance)));
+    }
+
+    @Test
+    public void testDelete() {
+        {{ idField.className }} id = {{ idField.exampleValue }};
+
+        this.classUnderTest.delete(id);
+
+        verify(this.{{ serviceField.varName }}, times(1)).delete(id);
+    }
+
+}

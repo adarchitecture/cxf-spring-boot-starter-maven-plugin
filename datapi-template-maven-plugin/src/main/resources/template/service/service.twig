@@ -1,0 +1,37 @@
+package {{ serviceField.packagePath }};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+{% include '/template/util/imports.twig' with dependencies %}
+
+import {{ modelField.packagePath }}.{{ modelField.className }};
+import {{ repoField.packagePath }}.{{ repoField.className }};
+
+@Service
+public class {{ serviceField.className }} {
+
+    private final {{ repoField.className }} {{ repoField.varName }};
+    
+    @Autowired
+    public {{ serviceField.className }}({{ repoField.className }} {{ repoField.varName }}) {
+        this.{{ repoField.varName }} = {{ repoField.varName }};
+    }
+    
+    public {{ modelField.className }} create({{ modelField.className }} {{ modelField.varName }}) {
+        return this.{{ repoField.varName }}.save({{ modelField.varName }});
+    }
+    
+    public {{ modelField.className }} read({{ idField.className }} {{ idField.varName }}) {
+        return this.{{ repoField.varName }}.findOne({{ idField.varName }});
+    }
+    
+    public {{ modelField.className }} update({{ modelField.className }} {{ modelField.varName }}) {
+        return this.{{ repoField.varName }}.save({{ modelField.varName }});
+    }
+    
+    public void delete({{ idField.className }} {{ idField.varName }}) {
+        this.{{ repoField.varName }}.delete({{ idField.varName }});
+    }
+
+}

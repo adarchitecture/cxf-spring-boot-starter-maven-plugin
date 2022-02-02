@@ -1,0 +1,2 @@
+lombok:
+  enable: not_a_boolean

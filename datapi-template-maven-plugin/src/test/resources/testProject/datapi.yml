@@ -1,0 +1,12 @@
+lombok:
+  enable: true
+
+directory:
+  model: somewhere/model
+  repository: somewhere/repository
+  controller: somewhere/controller
+  service: somewhere/service
+
+property:
+  enablePrimitives: true
+  key: key:string

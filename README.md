@@ -1,13 +1,13 @@
-cxf-spring-boot-starter-maven-plugin complementing cxf-spring-boot-starter
+datapi-template-maven-plugin complementing cxf-spring-boot-starter
 =============================
-[![Build Status](https://travis-ci.com/codecentric/cxf-spring-boot-starter-maven-plugin.svg?branch=master)](https://travis-ci.com/codecentric/cxf-spring-boot-starter-maven-plugin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.codecentric/cxf-spring-boot-starter-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.codecentric/cxf-spring-boot-starter-maven-plugin/)
+[![Build Status](https://travis-ci.com/codecentric/datapi-template-maven-plugin.svg?branch=master)](https://travis-ci.com/codecentric/datapi-template-maven-plugin)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.ada/datapi-template-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.ada/datapi-template-maven-plugin/)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![renovateenabled](https://img.shields.io/badge/renovate-enabled-yellow)](https://renovatebot.com)
-[![versionjaxb](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/cxf-spring-boot-starter-maven-plugin/master/cxf-spring-boot-starter-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27jaxb.version%27%5D&label=org.glassfish.jaxb)](github.com/eclipse-ee4j/jaxb-ri)
-[![versionjaxws](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/cxf-spring-boot-starter-maven-plugin/master/cxf-spring-boot-starter-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27jaxws-ri.version%27%5D&label=com.sun.xml.ws.jaxws)](https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-rt)
+[![versionjaxb](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/datapi-template-maven-plugin/master/datapi-template-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27jaxb.version%27%5D&label=org.glassfish.jaxb)](github.com/eclipse-ee4j/jaxb-ri)
+[![versionjaxws](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/datapi-template-maven-plugin/master/datapi-template-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27jaxws-ri.version%27%5D&label=com.sun.xml.ws.jaxws)](https://mvnrepository.com/artifact/com.sun.xml.ws/jaxws-rt)
 [![versionjava](https://img.shields.io/badge/jdk-8,_9,_11-brightgreen.svg?logo=java)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[![versionspring](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/cxf-spring-boot-starter-maven-plugin/master/cxf-spring-boot-starter-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27spring.version%27%5D&label=spring)](https://spring.io/)
+[![versionspring](https://img.shields.io/badge/dynamic/xml?color=brightgreen&url=https://raw.githubusercontent.com/codecentric/datapi-template-maven-plugin/master/datapi-template-maven-plugin/pom.xml&query=%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27properties%27%5D%2F%2A%5Blocal-name%28%29%3D%27spring.version%27%5D&label=spring)](https://spring.io/)
 
 
 While a spring-boot-starter like [cxf-spring-boot-starter] generally only serves as a Maven dependency, something that will be executed in the build-section is not delivered in such a way. But the generation of JAX-B Classfiles is a good candidate to run inside the build-process - so the resulting files aren´t checked into source control system. The configuration e.g. of the [jaxws-maven-plugin] is rather complex to work properly and one has to do some research, till all necessary configuration parameters are set properly ([something like this](https://github.com/jonashackt/soap-spring-boot-cxf/blob/master/pom.xml) has to be done - just have a look into the build section of the pom).
@@ -32,8 +32,8 @@ While a spring-boot-starter like [cxf-spring-boot-starter] generally only serves
 <build>
     <plugins>
         <plugin>
-            <groupId>de.codecentric</groupId>
-            <artifactId>cxf-spring-boot-starter-maven-plugin</artifactId>
+            <groupId>org.ada</groupId>
+            <artifactId>datapi-template-maven-plugin</artifactId>
             <version>2.3.0.RELEASE</version>
             <executions>
                 <execution>
@@ -145,7 +145,7 @@ docker run --rm -v "$PWD":/build/our/plugin -w /build/our/plugin maven:3-jdk-8 b
 
 ### Integration testing the plugin
 
-> When updating development/release version: don't forget to update [generation-test-project/pom.xml](cxf-spring-boot-starter-maven-plugin-integrationtest/src/test/resources/generation-test-project/pom.xml)!
+> When updating development/release version: don't forget to update [generation-test-project/pom.xml](datapi-template-maven-plugin-integrationtest/src/test/resources/generation-test-project/pom.xml)!
 
 We want to avoid as many problems as possible, so we should also do integration tests for this plugin. 
 
@@ -160,7 +160,7 @@ The [docs about testing Maven plugins](https://maven.apache.org/plugin-developer
 </dependency>
 ```
 
-With this dependency we're able to use test the plugin from within JUnit powered Testcases like [CxfSpringBootStarterMavenPluginIntegrationTest.class](cxf-spring-boot-starter-maven-plugin-integrationtest/src/test/java/de/codecentric/cxf/CxfSpringBootStarterMavenPluginIntegrationTest.java):
+With this dependency we're able to use test the plugin from within JUnit powered Testcases like [CxfSpringBootStarterMavenPluginIntegrationTest.class](datapi-template-maven-plugin-integrationtest/src/test/java/de/codecentric/cxf/CxfSpringBootStarterMavenPluginIntegrationTest.java):
 
 ```java
 import org.apache.maven.it.VerificationException;
@@ -192,7 +192,7 @@ public class CxfSpringBootStarterMavenPluginIntegrationTest {
 
 For more code examples on how to use the Verifier API, see [this blog post](https://blog.akquinet.de/2011/02/21/testing-maven-plugins-with-the-verifier-approach/). 
 
-As you may notice, we need a example project `generation-test-project` with a working [pom.xml](cxf-spring-boot-starter-maven-plugin-integrationtest/src/test/resources/generation-test-project/pom.xml) inside `src/test/resources/generation-test-project`:
+As you may notice, we need a example project `generation-test-project` with a working [pom.xml](datapi-template-maven-plugin-integrationtest/src/test/resources/generation-test-project/pom.xml) inside `src/test/resources/generation-test-project`:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -200,12 +200,12 @@ As you may notice, we need a example project `generation-test-project` with a wo
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.codecentric.soap</groupId>
+    <groupId>org.ada.soap</groupId>
     <artifactId>generation-test-project</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <description>Project solely for integrationtesting the cxf-spring-boot-starter-maven-plugin</description>
+    <description>Project solely for integrationtesting the datapi-template-maven-plugin</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -215,8 +215,8 @@ As you may notice, we need a example project `generation-test-project` with a wo
     <build>
         <plugins>
             <plugin>
-                <groupId>de.codecentric</groupId>
-                <artifactId>cxf-spring-boot-starter-maven-plugin</artifactId>
+                <groupId>org.ada</groupId>
+                <artifactId>datapi-template-maven-plugin</artifactId>
                 <version>2.1.6-SNAPSHOT</version>
                 <executions>
                     <execution>
@@ -232,36 +232,36 @@ As you may notice, we need a example project `generation-test-project` with a wo
 </project>
 ```
 
-And we need to introduce a parent pom to the project - because before actually running the integration test with `org.apache.maven.shared.maven-verifier` we need to execute the full Maven lifecycle incl. `mvn install` for the standard `cxf-spring-boot-starter-maven-plugin` project. Otherwise we wouldn't have something to integration test - and the second Maven module build would fail!
+And we need to introduce a parent pom to the project - because before actually running the integration test with `org.apache.maven.shared.maven-verifier` we need to execute the full Maven lifecycle incl. `mvn install` for the standard `datapi-template-maven-plugin` project. Otherwise we wouldn't have something to integration test - and the second Maven module build would fail!
 
 The parent [pom.xml](pom.xml) therefore has a `modules` section:
 
 ```
 	<modules>
-		<module>cxf-spring-boot-starter-maven-plugin</module>
-		<module>cxf-spring-boot-starter-maven-plugin-integrationtest</module>
+		<module>datapi-template-maven-plugin</module>
+		<module>datapi-template-maven-plugin-integrationtest</module>
 	</modules>
 ```
 
 Because we want to release this plugin to Maven central, all configuration needed there has also been placed into the parent pom.xml, which makes the plugin's pom.xml much more readable, since it only contains the configuration and dependencies really needed.
 
-##### Handling the ArtifactResolutionException: Could not find artifact de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT error
+##### Handling the ArtifactResolutionException: Could not find artifact org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT error
 
 There is one problem with the [org.apache.maven.shared.maven-verifier plugin](https://mvnrepository.com/artifact/org.apache.maven.shared/maven-verifier. When I first used the plugin, I got this error
 
 ```
-[INFO] ------------< de.codecentric.soap:generation-test-project >-------------
+[INFO] ------------< org.ada.soap:generation-test-project >-------------
 [INFO] Building generation-test-project 1.0.0-SNAPSHOT
 [INFO] --------------------------------[ jar ]---------------------------------
-[WARNING] The POM for de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT is missing, no dependency information available
+[WARNING] The POM for org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT is missing, no dependency information available
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  1.193 s
 [INFO] Finished at: 2019-06-19T15:19:36+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Plugin de.codecentric:cxf-spring-boot-starter-maven-plugin:2.1.6-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT -> [Help 1]
-org.apache.maven.plugin.PluginResolutionException: Plugin de.codecentric:cxf-spring-boot-starter-maven-plugin:2.1.6-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT
+[ERROR] Plugin org.ada:datapi-template-maven-plugin:2.1.6-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT -> [Help 1]
+org.apache.maven.plugin.PluginResolutionException: Plugin org.ada:datapi-template-maven-plugin:2.1.6-SNAPSHOT or one of its dependencies could not be resolved: Could not find artifact org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT
     at org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve (DefaultPluginDependenciesResolver.java:128)
     at org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor (DefaultMavenPluginManager.java:182)
     at org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor (DefaultMavenPluginManager.java:286)
@@ -290,7 +290,7 @@ org.apache.maven.plugin.PluginResolutionException: Plugin de.codecentric:cxf-spr
     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:225)
     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:406)
     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:347)
-Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: Could not find artifact de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT
+Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: Could not find artifact org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve (DefaultArtifactResolver.java:423)
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts (DefaultArtifactResolver.java:225)
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact (DefaultArtifactResolver.java:202)
@@ -323,7 +323,7 @@ Caused by: org.eclipse.aether.resolution.ArtifactResolutionException: Could not 
     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:225)
     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:406)
     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:347)
-Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find artifact de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT
+Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find artifact org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve (DefaultArtifactResolver.java:413)
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts (DefaultArtifactResolver.java:225)
     at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact (DefaultArtifactResolver.java:202)
@@ -365,7 +365,7 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 	at org.apache.maven.it.Verifier.executeGoals(Verifier.java:1369)
 	at org.apache.maven.it.Verifier.executeGoal(Verifier.java:1254)
 	at org.apache.maven.it.Verifier.executeGoal(Verifier.java:1248)
-	at de.codecentric.cxf.CxfSpringBootStarterMavenPluginIntegrationTest.testJaxBandJaxWsClassfilesGenerationInclPluginProperties(CxfSpringBootStarterMavenPluginIntegrationTest.java:21)
+	at org.ada.cxf.CxfSpringBootStarterMavenPluginIntegrationTest.testJaxBandJaxWsClassfilesGenerationInclPluginProperties(CxfSpringBootStarterMavenPluginIntegrationTest.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -400,23 +400,23 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 Results :
 
 Tests in error:
-  testJaxBandJaxWsClassfilesGenerationInclPluginProperties(de.codecentric.cxf.CxfSpringBootStarterMavenPluginIntegrationTest): Exit code was non-zero: 1; command line and log = (..)
+  testJaxBandJaxWsClassfilesGenerationInclPluginProperties(org.ada.cxf.CxfSpringBootStarterMavenPluginIntegrationTest): Exit code was non-zero: 1; command line and log = (..)
 
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
 
 [INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary for cxf-spring-boot-starter-maven-plugin-reactor 2.1.6-SNAPSHOT:
+[INFO] Reactor Summary for datapi-template-maven-plugin-reactor 2.1.6-SNAPSHOT:
 [INFO]
-[INFO] cxf-spring-boot-starter-maven-plugin-reactor ....... SUCCESS [  0.589 s]
-[INFO] cxf-spring-boot-starter-maven-plugin ............... SUCCESS [  4.294 s]
-[INFO] cxf-spring-boot-starter-maven-plugin-integrationtest FAILURE [  2.959 s]
+[INFO] datapi-template-maven-plugin-reactor ....... SUCCESS [  0.589 s]
+[INFO] datapi-template-maven-plugin ............... SUCCESS [  4.294 s]
+[INFO] datapi-template-maven-plugin-integrationtest FAILURE [  2.959 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  8.017 s
 [INFO] Finished at: 2019-06-19T15:19:36+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project cxf-spring-boot-starter-maven-plugin-integrationtest: There are test failures.
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project datapi-template-maven-plugin-integrationtest: There are test failures.
 ```
 
 After some hours of digging into the problem, I finally went to the source code of the [Verifier.java](https://github.com/apache/maven-verifier/blob/master/src/main/java/org/apache/maven/shared/verifier/Verifier.java#L195):
@@ -446,7 +446,7 @@ After some hours of digging into the problem, I finally went to the source code 
 }
 ```
 
-And there we are - if we havent set either `M2_HOME` or `maven.home`, the Verifier will place an ugly `${user.home)/m2` directory inside the `cxf-spring-boot-starter-maven-plugin-integrationtest` project folder and tries to download our pre-build `de.codecentric:cxf-spring-boot-starter-maven-plugin:jar:2.1.6-SNAPSHOT`, which isn't available on Maven central - since this was only build into our local Maven repository located under `$HOME/.m2/repository`.
+And there we are - if we havent set either `M2_HOME` or `maven.home`, the Verifier will place an ugly `${user.home)/m2` directory inside the `datapi-template-maven-plugin-integrationtest` project folder and tries to download our pre-build `org.ada:datapi-template-maven-plugin:jar:2.1.6-SNAPSHOT`, which isn't available on Maven central - since this was only build into our local Maven repository located under `$HOME/.m2/repository`.
 
 Finally the `README` of the [Maven plugin integration testing source](https://github.com/apache/maven-integration-testing) gave me the hint - we simply use a CLI parameter to set the correct Maven repository location:
 
@@ -476,15 +476,15 @@ verifier.setLogFileName("verifier-output.log");
 But where can I find this file? Have a look into `target/test-classes/yourTestProjectName`. In this plugin's case, the file is located in:
 
 ```
-cxf-spring-boot-starter-maven-plugin/cxf-spring-boot-starter-maven-plugin-integrationtest/target/test-classes/generation-test-project/verifier-output.log
+datapi-template-maven-plugin/datapi-template-maven-plugin-integrationtest/target/test-classes/generation-test-project/verifier-output.log
 ```
 
 ##### Final testcase
 
-Now after all this our Testcase [CxfSpringBootStarterMavenPluginIntegrationTest.class](cxf-spring-boot-starter-maven-plugin-integrationtest/src/test/java/de/codecentric/cxf/CxfSpringBootStarterMavenPluginIntegrationTest.java) looks like:
+Now after all this our Testcase [CxfSpringBootStarterMavenPluginIntegrationTest.class](datapi-template-maven-plugin-integrationtest/src/test/java/de/codecentric/cxf/CxfSpringBootStarterMavenPluginIntegrationTest.java) looks like:
                        
 ```java
-package de.codecentric.cxf;
+package org.ada.cxf;
 
 import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;

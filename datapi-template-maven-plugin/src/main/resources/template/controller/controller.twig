@@ -1,0 +1,44 @@
+package {{ controllerField.packagePath }};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+{% include '/template/util/imports.twig' with dependencies %}
+
+import {{ serviceField.packagePath }}.{{ serviceField.className }};
+import {{ modelField.packagePath }}.{{ modelField.className }};
+
+@RestController
+@RequestMapping("/{{ baseRoute }}")
+public class {{ controllerField.className }} {
+
+    private final {{ serviceField.className }} {{ serviceField.varName }};
+
+    @Autowired
+    public {{ controllerField.className }}({{ serviceField.className }} {{ serviceField.varName }}) {
+            this.{{ serviceField.varName }} = {{ serviceField.varName }};
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public {{ modelField.className }} create(@RequestBody {{ modelField.className }} {{ modelField.varName }}) {
+            return this.{{ serviceField.varName }}.create({{ modelField.varName }});
+    }
+
+    @RequestMapping(value = "/{{ '{' ~ idField.varName ~ '}' }}", method = RequestMethod.GET)
+    public {{ modelField.className }} read(@PathVariable {{ idField.className }} {{ idField.varName }}) {
+            return this.{{ serviceField.varName }}.read({{ idField.varName }});
+    }
+
+    @RequestMapping(value = "/{{ '{' ~ idField.varName ~ '}' }}", method = RequestMethod.PUT)
+    public {{ modelField.className }} update(@PathVariable {{ idField.className }} {{ idField.varName }}, @RequestBody {{ modelField.className }} {{ modelField.varName }}) {
+            return this.{{ serviceField.varName }}.update({{ modelField.varName }});
+    }
+
+    @RequestMapping(value = "/{{ '{' ~ idField.varName ~ '}' }}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable {{ idField.className }} {{ idField.varName }}) {
+            this.{{ serviceField.varName }}.delete({{ idField.varName }});
+    }
+
+}
